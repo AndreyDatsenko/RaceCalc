@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="/css/panel.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/inputWithoutBorder.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/table.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/linkStyle.css" rel="stylesheet" type="text/css"/>
+    <script src="/lib/jquery-3.1.1.js"></script>
+    <script src="/js/qualification.js"></script>
+    <script src="/js/action.js"></script>
+</head>
+<script>
+    $(document).ready(function () {
+        $("#flip").click(function () {
+            $("#panel").slideToggle("slow");
+        });
+    });
+</script>
+<body>
+<div align="center">
+    <h3>
+        <span th:text="${date}" th:remove="tag"></span>
+        <span th:text="${raceName}" th:remove="tag"></span>
+    </h3>
+    <h2>КВАЛІФІКАЦІЯ</h2>
+</div>
+<div id="flip">Додати участників заїзду</div>
+<div id="panel">
+
+    <form id="form">
+        Категорія <input type="text" size="12" name="category"/>
+        Им'я водія <input type="text" size="8" name="name"/>
+        Прізвище водія <input type="text" size="8" name="surname"/>
+        Номер <input type="text" name="number" size="2"/>
+        Автомобіль <input type="text" size="8" name="mark"/>
+    </form>
+    <p></p>
+    <button id="add_driver">Додати до таблиці</button>
+
+</div>
+<table width="60%" id="drivers_table">
+    <thead>
+    <tr>
+        <th width="10">Класс</th>
+        <th width="15%">Прізвище водія</th>
+        <th width="15%">Ім'я водія</th>
+        <th width="10%">Номер</th>
+        <th width="10%">Автомобіль</th>
+        <th width="20%">1-й заїзд</th>
+        <th width="20%">2-й заїзд</th>
+    </tr>
+    </thead>
+    <tbody id="driver"></tbody>
+</table>
+<p> </p>
+<form  th:action="@{/driver/qualification/table}">
+    <input type="hidden" name="date" th:attr="value=${date}"/>
+    <input type="hidden" name="raceName" th:attr="value=${raceName}"/>
+    <input id="list_drivers" type="submit" value="Розпочати кваліфікаційний заїзд"/>
+</form>
+
+
+<script>
+
+    $(document).ready(function () {
+        $("#add_driver").click(function () {
+            if (!/^[0-9]*$/.test($("input[name=number]").val())) {
+                alert("Не правильне значення для номера!");
+
+            } else {
+                saveDriver();
+                loadDrivers();
+            }
+        });
+    });
+
+    $(document).ready(function () {
+        $('#list_drivers').click(function () {
+
+                saveDriverFromTable();
+
+        });
+    });
+
+</script>
+</body>
+</html>

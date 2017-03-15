@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<div align="center">
+    <h3>
+        <span th:text="${date}" th:remove="tag"></span>
+        <span th:text="${raceName}" th:remove="tag"></span>
+    </h3>
+    <h2>КВАЛІФІКАЦІЯ</h2>
+    <h3>Результат заїзду</h3>
+</div>
+<table width="60%" align="center">
+    <tr th:each="result, iter : ${listResult}">
+        <td th:text="${iter.count}">1</td>
+        <td th:text="${result.key.car.category}"/>
+        <td th:text="${result.key.name}"/>
+        <td th:text="${result.key.surname}"/>
+        <td th:text="${result.key.number}"/>
+        <td th:text="${result.key.car.mark}"/>
+        <td th:text="${result.value}"/>
+    </tr>
+</table>
+
+</body>
+</html>
