@@ -4,7 +4,10 @@ import com.fau.driver.domein.Driver;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
@@ -31,11 +34,9 @@ public class DriverRepository {
     }
 
     public void save(Driver driver) {
-        Integer id = driver.getId();
-        id = idGenerator.incrementAndGet();
+        Integer id = idGenerator.incrementAndGet();
         driver.setId(id);
         drivers.add(driver);
-
     }
 
     public void update(Driver driver) {
