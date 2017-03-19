@@ -1,7 +1,7 @@
 CREATE TABLE competition_driver (
-  competition_id INT PRIMARY KEY,
-  driver_id      INT NOT NULL,
+  competition_id INT NOT NULL,
   INDEX competition_id_inx (competition_id),
+  driver_id      INT PRIMARY KEY NOT NULL,
   FOREIGN KEY (competition_id)
   REFERENCES competition (id)
     ON DELETE CASCADE,

@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Start page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link href="/css/panel.css" rel="stylesheet" type="text/css"/>
+    <script src="/lib/jquery-3.1.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#flip").click(function () {
+                $("#panel").slideToggle("slow");
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div id="flip">Створити подію</div>
+<div id="panel">
+    <form id="form" method="post" th:action="@{/competition/create}">
+        <table>
+            <tr>
+                <th>Подробиці події</th>
+            </tr>
+            <tr>
+                <td>Дата гонки <input type="date" name="date"/></td>
+                <td> Назва <input type="text" name="competitionName"/></td>
+                <td> Місто <input type="text" name="competitionCity"/></td>
+            </tr>
+            <tr>
+                <th>Ввести штрафи</th>
+            </tr>
+            <tr>
+            <td> Фішка борт(ФБ) <input form="form" type="text" name="chipBoard" pattern="([0-9]+):([0-5][0-9]):([0-5][0-9]).([0-5][0-9])"/></td>
+            <td> Фішка фронт(ФФ) <input form="form" type="text" name="chipFront" pattern="([0-9]+):([0-5][0-9]):([0-5][0-9]).([0-5][0-9])"/></td>
+            <td> Фальстарт(Фс) <input form="form" type="text" name="falseStart" pattern="([0-9]+):([0-5][0-9]):([0-5][0-9]).([0-5][0-9])"/></td>
+            </tr>
+            <tr>
+            <td><input type="submit" value="продовжити"/></td>
+            </tr>
+
+        </table>
+    </form>
+</div>
+
+<table>
+    <tr th:each="competition : ${competitions}">
+        <td width="100px" th:text="${competition.date}"/>
+        <td th:text="${competition.competitionName}"/>
+        <td>
+            <button id="race_result">відкрити</button>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

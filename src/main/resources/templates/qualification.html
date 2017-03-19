@@ -4,9 +4,10 @@
     <title>Getting Started: Serving Web Content</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link href="/css/panel.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/linkStyle.css" rel="stylesheet" type="text/css"/>
     <link href="/css/inputWithoutBorder.css" rel="stylesheet" type="text/css"/>
     <link href="/css/table.css" rel="stylesheet" type="text/css"/>
-    <link href="/css/linkStyle.css" rel="stylesheet" type="text/css"/>
+
     <script src="/lib/jquery-3.1.1.js"></script>
     <script src="/js/qualification.js"></script>
     <script src="/js/action.js"></script>
@@ -20,10 +21,10 @@
 </script>
 <body>
 <div align="center">
-    <h3>
-        <span th:text="${date}" th:remove="tag"></span>
-        <span th:text="${raceName}" th:remove="tag"></span>
-    </h3>
+    <!--<h3>-->
+        <!--<span th:text="${date}" th:remove="tag"></span>-->
+        <!--<span th:text="${raceName}" th:remove="tag"></span>-->
+    <!--</h3>-->
     <h2>КВАЛІФІКАЦІЯ</h2>
 </div>
 <div id="flip">Додати участників заїзду</div>
@@ -48,16 +49,15 @@
         <th width="15%">Ім'я водія</th>
         <th width="10%">Номер</th>
         <th width="10%">Автомобіль</th>
-        <th width="20%">1-й заїзд</th>
-        <th width="20%">2-й заїзд</th>
+        <th width="40%" colspan="2"></th>
+
     </tr>
     </thead>
     <tbody id="driver"></tbody>
 </table>
 <p> </p>
 <form  th:action="@{/driver/qualification/table}">
-    <input type="hidden" name="date" th:attr="value=${date}"/>
-    <input type="hidden" name="raceName" th:attr="value=${raceName}"/>
+
     <input id="list_drivers" type="submit" value="Розпочати кваліфікаційний заїзд"/>
 </form>
 

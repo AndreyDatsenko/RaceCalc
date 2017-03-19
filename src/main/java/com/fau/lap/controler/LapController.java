@@ -1,6 +1,5 @@
 package com.fau.lap.controler;
 
-import com.fau.car.domain.Car;
 import com.fau.lap.domain.Lap;
 import com.fau.lap.service.LapService;
 import com.fau.driver.domein.Driver;
@@ -9,26 +8,26 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/drive")
+@RequestMapping("/lap")
 public class LapController {
     @Autowired
     private LapService lapService;
 
     @RequestMapping("/create")
-    public void create(Driver driver, Car car) {
-        lapService.create(driver,car);
+    public void create(Driver driver) {
+        lapService.create(driver);
 
     }
 
     @RequestMapping("/addTime" )
-    public void addTime(Driver driver, Car car, float time, float failTime) {
-        lapService.addTime(driver, car, time, failTime);
+    public void addTime(Driver driver, float time, float failTime) {
+        lapService.addTime(driver, time, failTime);
 
     }
 
     @RequestMapping("/result")
-    public Lap result(Driver driver, Car car) {
-        return lapService.result(driver, car);
+    public Lap result(Driver driver) {
+        return lapService.result(driver);
     }
 
 

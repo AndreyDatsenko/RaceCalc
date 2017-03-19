@@ -5,36 +5,31 @@ import com.fau.driver.repository.DriverRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalTime;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class DriverService {
-    @Autowired
+
     private DriverRepository driverRepository;
 
-    public List<Driver> getAll(){
-        return driverRepository.getAll();
+    @Autowired
+    public DriverService(DriverRepository driverRepository){
+        this.driverRepository = driverRepository;
     }
 
-    public void save(Driver driver){
-        driverRepository.save(driver);
+    public void saveDriver(Driver driver) {
+        driverRepository.saveDriver(driver);
     }
 
-    public void update(Driver driver){
-        driverRepository.update(driver);
+    public List<Driver> driverList() {
+        return driverRepository.driverList();
     }
 
-    public void delete(int id){
-        driverRepository.delete(id);
+    public void deleteDriver(int id) {
+        driverRepository.deleteDriver(id);
     }
 
-    public void saveDriversWithResult(Driver driver, LocalTime timeResult) {
-        driverRepository.saveDriversWithResult(driver, timeResult);
-    }
-
-    public Map<Driver, LocalTime>  getOrderDrivers(){
-        return driverRepository.getOrderDrivers();
+    public void updateDriver(Driver driver) {
+        driverRepository.updateDriver(driver);
     }
 }

@@ -1,28 +1,45 @@
 package com.fau.driver.domein;
 
-import com.fau.car.domain.Car;
-
 public class Driver {
 
     private int id;
     private String name;
     private String surname;
     private int number;
-    private Car car;
+    private String carCategory;
+    private String carMark;
 
-    public Driver(int id, String name, String surname, int number, Car car) {
+    public String getCarCategory() {
+        return carCategory;
+    }
+
+    public void setCarCategory(String carCategory) {
+        this.carCategory = carCategory;
+    }
+
+    public String getCarMark() {
+        return carMark;
+    }
+
+    public void setCarMark(String carMark) {
+        this.carMark = carMark;
+    }
+
+    public Driver(int id, String name, String surname, int number, String carCategory, String carMark) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.number = number;
-        this.car = car;
+        this.carCategory = carCategory;
+        this.carMark = carMark;
     }
 
-    public Driver(String name, String surname, int number, Car car) {
+    public Driver(String name, String surname, int number, String carCategory, String carMark) {
         this.name = name;
         this.surname = surname;
         this.number = number;
-        this.car = car;
+        this.carCategory = carCategory;
+        this.carMark = carMark;
     }
 
     public int getId() {
@@ -39,14 +56,6 @@ public class Driver {
 
     public void setNumber(int number) {
         this.number = number;
-    }
-
-    public Car getCar() {
-        return car;
-    }
-
-    public void setCar(Car car) {
-        this.car = car;
     }
 
     public String getName() {

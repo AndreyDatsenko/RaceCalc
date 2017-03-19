@@ -1,6 +1,5 @@
 package com.fau.lap.service;
 
-import com.fau.car.domain.Car;
 import com.fau.lap.domain.Lap;
 import com.fau.lap.repository.LapRepository;
 import com.fau.driver.domein.Driver;
@@ -13,18 +12,18 @@ public class LapService {
     @Autowired
     private LapRepository lapRepository;
 
-    public void addTime(Driver driver, Car car, float time, float failTime){
-        lapRepository.addTime(driver, car, time, failTime);
+    public void addTime(Driver driver, float time, float failTime){
+        lapRepository.addTime(driver, time, failTime);
 
     }
 
-    public void create(Driver driver, Car car) {
+    public void create(Driver driver) {
 
-        lapRepository.create(driver, car);
+        lapRepository.create(driver);
     }
 
-    public Lap result(Driver driver, Car car) {
-        return lapRepository.result(driver, car);
+    public Lap result(Driver driver) {
+        return lapRepository.result(driver);
 
     }
 }

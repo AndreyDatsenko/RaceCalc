@@ -1,37 +1,53 @@
 package com.fau.lap.domain;
 
-
 import java.time.LocalTime;
-import java.util.*;
 
 public class Lap {
 
-    private List<LocalTime> times = new ArrayList<>();
-    private Map<String, LocalTime> penalties = new HashMap<>();
-    private LocalTime result;
+    private int number;
+    private boolean chipBoard;
+    private boolean chipFront;
+    private boolean falseStart;
+    private LocalTime time;
 
-    public List<LocalTime> getTimes() {
-        return times;
+    public int getNumber() {
+        return number;
     }
 
-    public void setTimes(List<LocalTime> times) {
-        this.times = times;
+    public void setNumber(int number) {
+        this.number = number;
     }
 
-    public Map<String, LocalTime> getPenalties() {
-        return penalties;
+    public boolean isChipBoard() {
+        return chipBoard;
     }
 
-    public void setPenaltyes(Map<String, LocalTime> penalties) {
-        this.penalties = penalties;
+    public void setChipBoard(boolean chipBoard) {
+        this.chipBoard = chipBoard;
     }
 
-    public LocalTime getResult() {
-        return result;
+    public boolean isChipFront() {
+        return chipFront;
     }
 
-    public void setResult(LocalTime result) {
-        this.result = result;
+    public void setChipFront(boolean chipFront) {
+        this.chipFront = chipFront;
+    }
+
+    public boolean isFalseStart() {
+        return falseStart;
+    }
+
+    public void setFalseStart(boolean falseStart) {
+        this.falseStart = falseStart;
+    }
+
+    public LocalTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalTime time) {
+        this.time = time;
     }
 }
 

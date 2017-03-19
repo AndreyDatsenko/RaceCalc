@@ -1,7 +1,7 @@
 a:link, a:visited {
-    background-color: #000000;
-    color: white;
-    padding: 14px 25px;
+    background-color: #f7a758;
+    color: #000000;
+    width: 100%;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -9,5 +9,5 @@ a:link, a:visited {
 
 
 a:hover, a:active {
-    background-color: #91967e;
+    background-color: #9da59b;
 }

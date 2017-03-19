@@ -1,6 +1,5 @@
 package com.fau.config;
 
-
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.flywaydb.core.Flyway;
@@ -18,21 +17,21 @@ public class DbConfig {
 
     @Value("${dataSource.driverClassName}")
     private String driver;
-
-    @Value("${dev.dataSource.url}")
-    private String devUrl;
-    @Value("${dev.dataSource.username}")
-    private String devUsername;
-    @Value("${dev.dataSource.password}")
-    private String devPassword;
+    @Value("${dataSource.url}")
+    private String url;
+    @Value("${dataSource.username}")
+    private String username;
+    @Value("${dataSource.password}")
+    private String password;
 
     @Bean
     public DataSource configureDataSource() {
         HikariConfig config = new HikariConfig();
         config.setDriverClassName(driver);
-        config.setJdbcUrl(devUrl);
-        config.setUsername(devUsername);
-        config.setPassword(devPassword);
+        config.setJdbcUrl(url);
+        config.setUsername(username);
+        config.setPassword(password);
+        config.setMaximumPoolSize(10);
 
         return new HikariDataSource(config);
     }
