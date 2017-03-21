@@ -1,5 +1,10 @@
 package com.fau.driver.domein;
 
+import com.fau.lap.domain.Lap;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Driver {
 
     private int id;
@@ -8,6 +13,15 @@ public class Driver {
     private int number;
     private String carCategory;
     private String carMark;
+    private List<Lap> laps = new ArrayList<>();
+
+    public List<Lap> getLaps() {
+        return laps;
+    }
+
+    public void setLaps(List<Lap> laps) {
+        this.laps = laps;
+    }
 
     public String getCarCategory() {
         return carCategory;
@@ -22,23 +36,6 @@ public class Driver {
     }
 
     public void setCarMark(String carMark) {
-        this.carMark = carMark;
-    }
-
-    public Driver(int id, String name, String surname, int number, String carCategory, String carMark) {
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.number = number;
-        this.carCategory = carCategory;
-        this.carMark = carMark;
-    }
-
-    public Driver(String name, String surname, int number, String carCategory, String carMark) {
-        this.name = name;
-        this.surname = surname;
-        this.number = number;
-        this.carCategory = carCategory;
         this.carMark = carMark;
     }
 

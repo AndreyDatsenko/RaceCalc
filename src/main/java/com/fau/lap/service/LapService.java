@@ -9,17 +9,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class LapService {
 
-    @Autowired
     private LapRepository lapRepository;
 
-    public void addTime(Driver driver, float time, float failTime){
-        lapRepository.addTime(driver, time, failTime);
-
+    @Autowired
+    public LapService(LapRepository lapRepository){
+        this.lapRepository = lapRepository;
     }
 
-    public void create(Driver driver) {
-
-        lapRepository.create(driver);
+    public void saveQualificationLap(Lap lap, int driverId) {
+        lapRepository.saveQualificationLap(lap, driverId);
     }
 
     public Lap result(Driver driver) {

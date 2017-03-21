@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
     <title>Getting Started: Serving Web Content</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -22,8 +22,8 @@
 <body>
 <div align="center">
     <!--<h3>-->
-        <!--<span th:text="${date}" th:remove="tag"></span>-->
-        <!--<span th:text="${raceName}" th:remove="tag"></span>-->
+    <!--<span th:text="${date}" th:remove="tag"></span>-->
+    <!--<span th:text="${raceName}" th:remove="tag"></span>-->
     <!--</h3>-->
     <h2>КВАЛІФІКАЦІЯ</h2>
 </div>
@@ -55,35 +55,8 @@
     </thead>
     <tbody id="driver"></tbody>
 </table>
-<p> </p>
-<form  th:action="@{/driver/qualification/table}">
+<p></p>
 
-    <input id="list_drivers" type="submit" value="Розпочати кваліфікаційний заїзд"/>
-</form>
-
-
-<script>
-
-    $(document).ready(function () {
-        $("#add_driver").click(function () {
-            if (!/^[0-9]*$/.test($("input[name=number]").val())) {
-                alert("Не правильне значення для номера!");
-
-            } else {
-                saveDriver();
-                loadDrivers();
-            }
-        });
-    });
-
-    $(document).ready(function () {
-        $('#list_drivers').click(function () {
-
-                saveDriverFromTable();
-
-        });
-    });
-
-</script>
+<button id="list_drivers">Розпочати кваліфікаційний заїзд"</button>
 </body>
 </html>

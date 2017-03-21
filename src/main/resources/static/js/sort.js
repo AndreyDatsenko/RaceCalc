@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('table#drivers_table').each(function() {
+    $('#drivers_table').each(function() {
         var $table = $(this);
         $('th', $table).each(function(column) {
             var $header = $(this);

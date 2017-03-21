@@ -32,4 +32,8 @@ public class DriverService {
     public void updateDriver(Driver driver) {
         driverRepository.updateDriver(driver);
     }
+
+    public List<Driver> getResultQualificationList() {
+        return driverRepository.getResultQualificationList();
+    }
 }

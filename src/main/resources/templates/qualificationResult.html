@@ -15,16 +15,20 @@
     <h3>Результат заїзду</h3>
 </div>
 <table width="60%" align="center">
-    <tr th:each="result, iter : ${listResult}">
+    <tr th:each="driver, iter : ${drivers}">
         <td th:text="${iter.count}">1</td>
-        <td th:text="${result.key.car.category}"/>
-        <td th:text="${result.key.name}"/>
-        <td th:text="${result.key.surname}"/>
-        <td th:text="${result.key.number}"/>
-        <td th:text="${result.key.car.mark}"/>
-        <td th:text="${result.value}"/>
+        <td th:text="${driver.carCategory}"/>
+        <td th:text="${driver.name}"/>
+        <td th:text="${driver.surname}"/>
+        <td th:text="${driver.number}"/>
+        <td th:text="${driver.carMark}"/>
+        <span th:each="lap : ${driver.laps}">
+        <td th:if="${lap.number eq 0}" th:text="${lap.time}"/>
+        </span>
     </tr>
 </table>
-
+<form action="/competition/general/race">
+    <input type="submit" value="Перейти до гонки"/>
+</form>
 </body>
 </html>

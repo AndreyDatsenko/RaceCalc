@@ -5,25 +5,34 @@ import com.fau.lap.service.LapService;
 import com.fau.driver.domein.Driver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 @Controller
 @RequestMapping("/lap")
 public class LapController {
-    @Autowired
+
     private LapService lapService;
 
-    @RequestMapping("/create")
-    public void create(Driver driver) {
-        lapService.create(driver);
+    @Autowired
+    public LapController(LapService lapService) {
+        this.lapService = lapService;
+    }
+
+    @PostMapping("/qualification/time")
+    @ResponseBody
+    public void create(@RequestParam Integer driverId,
+                       @RequestParam String time) {
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm:ss.SS");
+        Lap lap = new Lap();
+        lap.setNumber(0);
+        lap.setTime(LocalTime.parse(time, format));
+        lapService.saveQualificationLap(lap, driverId);
 
     }
 
-    @RequestMapping("/addTime" )
-    public void addTime(Driver driver, float time, float failTime) {
-        lapService.addTime(driver, time, failTime);
-
-    }
 
     @RequestMapping("/result")
     public Lap result(Driver driver) {

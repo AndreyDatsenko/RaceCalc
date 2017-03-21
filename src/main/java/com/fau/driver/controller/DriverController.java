@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalTime;
 import java.util.List;
 
 @Controller
@@ -34,8 +33,13 @@ public class DriverController {
                      @RequestParam Integer number,
                      @RequestParam String category,
                      @RequestParam String mark) {
-
-        driverService.saveDriver(new Driver(name, surname, number, category, mark));
+        Driver driver = new Driver();
+        driver.setName(name);
+        driver.setSurname(surname);
+        driver.setNumber(number);
+        driver.setCarCategory(category);
+        driver.setCarMark(mark);
+        driverService.saveDriver(driver);
     }
 
     @PostMapping("/{id}/edit")
@@ -46,7 +50,14 @@ public class DriverController {
                        @RequestParam Integer number,
                        @RequestParam String category,
                        @RequestParam String mark) {
-driverService.updateDriver(new Driver(id, name, surname, number,  category, mark));
+        Driver driver = new Driver();
+        driver.setId(id);
+        driver.setName(name);
+        driver.setSurname(surname);
+        driver.setNumber(number);
+        driver.setCarCategory(category);
+        driver.setCarMark(mark);
+        driverService.updateDriver(driver);
 
     }
 
@@ -57,12 +68,9 @@ driverService.updateDriver(new Driver(id, name, surname, number,  category, mark
         driverService.deleteDriver(id);
     }
 
-    @GetMapping("/result/list")
-    public String qualificationResult(Model model,
-                                      @RequestParam("date") String date,
-                                      @RequestParam("raceName") String raceName) {
-        model.addAttribute("date", date);
-        model.addAttribute("raceName", raceName);
+    @GetMapping("/qualification/result")
+    public String qualificationResult(Model model) {
+        model.addAttribute("drivers", driverService.getResultQualificationList());
         return "qualificationResult";
     }
 }

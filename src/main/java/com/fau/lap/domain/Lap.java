@@ -2,6 +2,7 @@ package com.fau.lap.domain;
 
 import java.time.LocalTime;
 
+
 public class Lap {
 
     private int number;

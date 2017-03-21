@@ -43,7 +43,7 @@ public class CompetitionController {
         competition.setChipFront(LocalTime.parse(chipFront, format));
         competition.setFalseStart(LocalTime.parse(falseStart, format));
         competitionService.saveCompetition(competition);
-        return "qualification";
+        return "redirect:/competition/qualification";
     }
 
     @GetMapping("/all")
@@ -52,10 +52,7 @@ public class CompetitionController {
     }
 
     @GetMapping("/qualification")
-    public String qualification(Model model, @RequestParam("date") String date,
-                                @RequestParam("raceName") String raceName) {
-        model.addAttribute("raceName", raceName);
-        model.addAttribute("date", date);
+    public String qualification(Model model) {
 
         return "qualification";
     }
