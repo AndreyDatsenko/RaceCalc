@@ -26,7 +26,7 @@ public class CompetitionController {
     }
 
     @GetMapping("/new")
-    public String competitionFormation(){
+    public String competitionFormation() {
         return "competitionFormation";
     }
 

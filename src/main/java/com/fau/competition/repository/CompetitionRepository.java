@@ -41,13 +41,14 @@ public class CompetitionRepository {
         parameters.put("false_start", competition.getFalseStart().toNanoOfDay());
         Number newId = insertCompetition.executeAndReturnKey(parameters);
         competition.setId(newId.intValue());
-        
+
         return newId.intValue();
     }
 
     public void closeCompetition() {
         jdbcTemplate.update("UPDATE Competition SET is_active=FALSE WHERE is_active = TRUE");
     }
+
     public List<Driver> getResultQualificationList(int competitionId) {
         Object[] param = new Object[]{competitionId};
         String sql = "SELECT d.id, d.name, d.surname, d.number, d.car_category, d.car_mark, lp.lap_number, lp.time\n" +

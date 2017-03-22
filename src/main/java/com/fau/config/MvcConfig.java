@@ -31,12 +31,12 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     }
 
     @Bean
-    public DriverResolver driverResolver(){
+    public DriverResolver driverResolver() {
         return new DriverResolver();
     }
 
     @Bean
-    public LapResolver lapResolver(){
+    public LapResolver lapResolver() {
         return new LapResolver();
     }
 

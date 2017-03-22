@@ -23,7 +23,7 @@ public class LapController {
 
     @PostMapping("/qualification/time")
     @ResponseBody
-    public void create(@RequestParam Integer driverId,Lap lap) {
+    public void create(@RequestParam Integer driverId, Lap lap) {
         lapService.saveQualificationLap(lap, driverId);
 
     }

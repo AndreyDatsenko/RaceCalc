@@ -12,7 +12,7 @@ public class LapService {
     private LapRepository lapRepository;
 
     @Autowired
-    public LapService(LapRepository lapRepository){
+    public LapService(LapRepository lapRepository) {
         this.lapRepository = lapRepository;
     }
 

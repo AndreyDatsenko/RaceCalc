@@ -24,6 +24,7 @@ public class CompetitionResolver implements HandlerMethodArgumentResolver {
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
         HttpServletRequest servletRequest = webRequest.getNativeRequest(HttpServletRequest.class);
+
         Competition competition = new Competition();
         competition.setDate(LocalDate.parse(servletRequest.getParameter("date")));
         competition.setCompetitionName(servletRequest.getParameter("competitionName"));

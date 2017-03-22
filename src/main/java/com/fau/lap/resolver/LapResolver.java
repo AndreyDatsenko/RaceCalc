@@ -13,7 +13,7 @@ import java.time.format.DateTimeFormatter;
 
 public class LapResolver implements HandlerMethodArgumentResolver {
 
-   private static DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm:ss.SS");
+    private static DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm:ss.SS");
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
