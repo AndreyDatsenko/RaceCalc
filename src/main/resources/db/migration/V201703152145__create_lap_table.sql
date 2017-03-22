@@ -1,7 +1,7 @@
 CREATE TABLE lap (
   driver_id   INT    NOT NULL,
   lap_number  INT(3) NOT NULL,
-  time        LONG,
+  time        BIGINT,
   chip_board  BIT(1),
   chip_front  BIT(1),
   false_start BIT(1),

@@ -20,8 +20,4 @@ public class LapService {
         lapRepository.saveQualificationLap(lap, driverId);
     }
 
-    public Lap result(Driver driver) {
-        return lapRepository.result(driver);
-
-    }
 }

@@ -2,60 +2,61 @@ package com.fau.competition.controller;
 
 import com.fau.competition.domein.Competition;
 import com.fau.competition.service.CompetitionService;
+import com.fau.driver.domein.Driver;
+import com.fau.driver.service.DriverService;
+import com.sun.media.sound.ModelDestination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @Controller
 @RequestMapping("/competition")
 public class CompetitionController {
 
     private CompetitionService competitionService;
+    private DriverService driverService;
 
     @Autowired
-    public CompetitionController(CompetitionService competitionService) {
+    public CompetitionController(CompetitionService competitionService, DriverService driverService) {
         this.competitionService = competitionService;
+        this.driverService = driverService;
+    }
+
+    @GetMapping("/new")
+    public String competitionFormation(){
+        return "competitionFormation";
     }
 
     @PostMapping("/create")
-    public String createCompetition(@RequestParam String date,
-                                    @RequestParam String competitionName,
-                                    @RequestParam String competitionCity,
-                                    @RequestParam String chipBoard,
-                                    @RequestParam String chipFront,
-                                    @RequestParam String falseStart) {
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm:ss.SS");
-        Competition competition = new Competition();
-        competition.setDate(LocalDate.parse(date));
-        competition.setCompetitionName(competitionName);
-        competition.setCompetitionCity(competitionCity);
-        competition.setActive(true);
-        competition.setChipBoard(LocalTime.parse(chipBoard, format));
-        competition.setChipFront(LocalTime.parse(chipFront, format));
-        competition.setFalseStart(LocalTime.parse(falseStart, format));
-        competitionService.saveCompetition(competition);
-        return "redirect:/competition/qualification";
+    public String createCompetition(Competition competition) {
+        int competitionId = competitionService.createCompetition(competition);
+        return "redirect:/competition/" + competitionId + "/qualification";
     }
 
-    @GetMapping("/all")
-    public String allCompetition(Model model) {
-        return "competitionList";
+    @ResponseBody
+    @GetMapping("/{competitionId}/drivers")
+    public List<Driver> drivers(@PathVariable int competitionId) {
+        return driverService.driverList(competitionId);
     }
 
-    @GetMapping("/qualification")
-    public String qualification(Model model) {
+    @GetMapping("/{competitionId}/qualification/result")
+    public String qualificationResult(Model model, @PathVariable int competitionId) {
+        model.addAttribute("drivers", competitionService.getResultQualificationList(competitionId));
+        return "qualificationResult";
+    }
 
+    @PostMapping("/close")
+    public String closeCompetition() {
+        competitionService.closeCompetition();
+        return "index";
+    }
+
+    @GetMapping("/{competitionId}/qualification")
+    public String qualification(@PathVariable int competitionId, Model model) {
+        model.addAttribute("competitionId", competitionId);
         return "qualification";
     }
-
-
 }

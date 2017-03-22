@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Start page</title>
+    <link href="/css/competitionFormation.css" rel="stylesheet" type="text/css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div id="main">
+<h2>Створити подію</h2>
+
+<form id="form" method="post" th:action="@{/competition/create}">
+
+    <div class="content box">
+        <h3>Подробиці події</h3>
+
+        <span>Дата гонки <input type="date" name="date"/></span>
+        <span> Назва <input type="text" name="competitionName"/></span>
+        <span> Місто <input type="text" name="competitionCity"/></span>
+    </div>
+    <div class="content box">
+        <h3>Ввести штрафи</h3>
+
+        <span> Фішка борт(ФБ) <input form="form" type="text" name="chipBoard"
+                           pattern="([0-9]+):([0-5][0-9]):([0-5][0-9]).([0-5][0-9])"/></span>
+        <span> Фішка фронт(ФФ) <input form="form" type="text" name="chipFront"
+                             pattern="([0-9]+):([0-5][0-9]):([0-5][0-9]).([0-5][0-9])"/></span>
+        <span> Фальстарт(Фс) <input form="form" type="text" name="falseStart"
+                                    pattern="([0-9]+):([0-5][0-9]):([0-5][0-9]).([0-5][0-9])"/></span>
+        <p> </p>
+        <span><input align="center" type="submit" value="продовжити"/></span>
+        <p> </p>
+    </div>
+</form>
+</div>
+</body>
+</html>

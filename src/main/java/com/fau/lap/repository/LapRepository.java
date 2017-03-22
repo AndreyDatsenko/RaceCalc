@@ -18,17 +18,10 @@ public class LapRepository {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    public void addTime(Driver driver, float time, float failTime) {
-
-    }
-
     public void saveQualificationLap(Lap lap, int driverID) {
-        Object[] params = new Object[]{driverID, lap.getNumber(), lap.getTime().toNanoOfDay()};
+        Object[] params = new Object[]{driverID, lap.getLapNumber(), lap.getTime().toNanoOfDay()};
         String sql = "INSERT INTO lap(driver_id, lap_number, time) VALUES(?, ?, ?)";
         jdbcTemplate.update(sql, params);
     }
 
-    public Lap result(Driver driver) {
-        return new Lap();
-    }
 }

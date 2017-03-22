@@ -1,28 +1,32 @@
+
 $(document).ready(function () {
     $("#add_driver").click(function () {
         if (!/^[0-9]*$/.test($("input[name=number]").val())) {
             alert("Не правильне значення для номера!");
-
         } else {
             saveDriver();
-            loadDrivers();
         }
     });
     $('#list_drivers').click(function () {
+
         replaceTable();
         replaceButton();
+
         $('#flip').hide();
+        $('#panel').hide();
     });
     loadDrivers();
 });
 
 function loadDrivers() {
-    $.get("/driver/list", function (data) {
+    var competitionId = $("input[name=competition_id]").val();
+
+    $.get("/competition/" + competitionId + "/drivers", function (data) {
         var content = '';
         $.each(data, function () {
             content += ( "<tr><td><input form='" + this.id + "' class='input' type='text' name='category' value='" + this.carCategory + "'/></td>" +
-            "<td><input form='" + this.id + "' class='input' type='text' name='name' value='" + this.surname + "'></td>" +
-            "<td><input form='" + this.id + "' class='input' type='text' name='surname' value='" + this.name + "'/></td>" +
+            "<td><input form='" + this.id + "' class='input' type='text' name='name' value='" + this.name + "'></td>" +
+            "<td><input form='" + this.id + "' class='input' type='text' name='surname' value='" + this.surname + "'/></td>" +
             "<td><input form='" + this.id + "' class='input' type='text' name='number' value='" + this.number + "'/></td>" +
             "<td><input form='" + this.id + "' class='input' type='text' name='mark' value='" + this.carMark + "'/></td>" +
             "<td><a href='#' class='edit'>редагувати</a><input type='hidden' name='id' value='" + this.id + "'/></td>" +
@@ -33,25 +37,30 @@ function loadDrivers() {
 }
 
 function saveDriver() {
-    var name = $("input[name=name]").val();
     var surname = $("input[name=surname]").val();
+    var name = $("input[name=name]").val();
     var number = $("input[name=number]").val();
-    var category = $("input[name=category]").val();
-    var mark = $("input[name=mark]").val();
+    var carCategory = $("input[name=category]").val();
+    var carMark = $("input[name=mark]").val();
+    var competitionId = $("input[name=competition_id]").val();
 
-    $.post("/driver/save",
+    $.post("/driver/" + competitionId + "/create",
         {
-            name: name,
             surname: surname,
+            name: name,
             number: number,
-            category: category,
-            mark: mark
+            carCategory: carCategory,
+            carMark: carMark
         }
-    );
+    ).then(function() {
+        loadDrivers();
+    });
 }
 
 function replaceTable() {
-    $.get("/driver/list", function (data) {
+    var competitionId = $("input[name=competition_id]").val();
+
+    $.get("/competition/" + competitionId + "/drivers", function (data) {
         var tableContent = "<tr></tr><th width=20'>Класс</th>" +
             "<th width='15%'>Прізвище водія</th>" +
             "<th width='15%'>Ім'я водія</th>" +
@@ -78,7 +87,8 @@ function replaceTable() {
 }
 
 function replaceButton() {
-    var submit = "<form action='/driver/qualification/result'>" +
+    var competitionId = $("input[name=competition_id]").val();
+    var submit = "<form action='/competition/" + competitionId + "/qualification/result'>" +
         "<input type='submit' value='Результати заїзду'/></form>"
 
     $('#list_drivers').replaceWith(submit);

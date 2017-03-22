@@ -4,13 +4,10 @@ import com.fau.driver.domein.Driver;
 import com.fau.lap.domain.Lap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,7 +28,7 @@ public class DriverRepository {
                 .withTableName("driver");
     }
 
-    public void saveDriver(Driver driver) {
+    public void createDriver(int competitionId, Driver driver) {
         Map<String, Object> parameters = new HashMap<>(6);
         parameters.put("number", driver.getNumber());
         parameters.put("name", driver.getName());
@@ -41,24 +38,18 @@ public class DriverRepository {
         Number newId = insertDriver.executeAndReturnKey(parameters);
         driver.setId(newId.intValue());
 
-        addToCompetitionDriver(newId.intValue());
+        addDriverToCompetition(competitionId, newId.intValue());
     }
 
-    public void addToCompetitionDriver(int driverId) {
-        Object[] params = new Object[]{getCompetitionId(), driverId};
+    public void addDriverToCompetition(int competitionId, int driverId) {
+        Object[] params = new Object[]{competitionId, driverId};
         String sql = "INSERT INTO competition_driver (competition_id, driver_id) VALUES(?, ?)";
 
         jdbcTemplate.update(sql, params);
     }
 
-    public int getCompetitionId() {
-        String sql = "SELECT id FROM competition WHERE is_active = ?";
-
-        return jdbcTemplate.queryForObject(sql, new Object[]{true}, Integer.class);
-    }
-
-    public List<Driver> driverList() {
-        Object[] param = new Object[]{getCompetitionId()};
+    public List<Driver> driverList(int competitionId) {
+        Object[] param = new Object[]{competitionId};
         String sql = "SELECT * FROM driver d\n" +
                 "JOIN competition_driver cd ON d.id = cd.driver_id\n" +
                 "AND cd.competition_id=?";
@@ -76,37 +67,8 @@ public class DriverRepository {
         });
     }
 
-    public List<Driver> getResultQualificationList() {
-        Object[] param = new Object[]{getCompetitionId()};
-        String sql = "SELECT d.id, d.name, d.surname, d.number, d.car_category, d.car_mark, lp.lap_number, lp.time\n" +
-                "FROM driver d\n" +
-                "JOIN competition_driver cd ON d.id = cd.driver_id\n" +
-                "JOIN lap lp ON lp.driver_id = d.id AND cd.competition_id=?\n" +
-                "ORDER BY lp.time";
-
-        return jdbcTemplate.query(sql, param, (rs, rowNum) -> {
-            List<Lap> laps = new ArrayList<>();
-
-            Driver driver = new Driver();
-            driver.setId(rs.getInt("id"));
-            driver.setName(rs.getString("name"));
-            driver.setSurname(rs.getString("surname"));
-            driver.setNumber(rs.getInt("number"));
-            driver.setCarCategory(rs.getString("car_category"));
-            driver.setCarMark(rs.getString("car_mark"));
-
-            Lap lap = new Lap();
-            lap.setNumber(rs.getInt("lap_number"));
-            lap.setTime(LocalTime.ofNanoOfDay(rs.getLong("time")));
-            laps.add(lap);
-            driver.setLaps(laps);
-
-            return driver;
-        });
-    }
-
-    public void deleteDriver(int id) {
-        Object[] param = new Object[]{id};
+    public void deleteDriver(int driverId) {
+        Object[] param = new Object[]{driverId};
         String deleteFromCompetitionDriver = "DELETE FROM competition_driver WHERE driver_id=?";
         String deleteFromDriver = "DELETE FROM driver WHERE id=?";
         jdbcTemplate.update(deleteFromCompetitionDriver, param);

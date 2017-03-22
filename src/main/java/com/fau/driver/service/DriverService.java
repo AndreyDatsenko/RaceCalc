@@ -17,23 +17,19 @@ public class DriverService {
         this.driverRepository = driverRepository;
     }
 
-    public void saveDriver(Driver driver) {
-        driverRepository.saveDriver(driver);
+    public void createDriver(int competitionId, Driver driver) {
+        driverRepository.createDriver(competitionId, driver);
     }
 
-    public List<Driver> driverList() {
-        return driverRepository.driverList();
+    public List<Driver> driverList(int competitionId) {
+        return driverRepository.driverList(competitionId);
     }
 
-    public void deleteDriver(int id) {
-        driverRepository.deleteDriver(id);
+    public void deleteDriver(int driverId) {
+        driverRepository.deleteDriver(driverId);
     }
 
     public void updateDriver(Driver driver) {
         driverRepository.updateDriver(driver);
-    }
-
-    public List<Driver> getResultQualificationList() {
-        return driverRepository.getResultQualificationList();
     }
 }

@@ -34,6 +34,7 @@ $(document).on('click','.save_time',function() {
     var time1 =$("td:eq(5)",row).find('input').val();
     var time2 =$("td:eq(6)",row).find('input').val();
     var driverId =$("td:eq(7)",row).find('input').val();
+   var lapNumber = '0';
     var time = '';
 
     if(time1 < time2 || time2 == ''){
@@ -51,7 +52,9 @@ $(document).on('click','.save_time',function() {
 
         $.post("/lap/qualification/time",
             {
+
                 driverId: driverId,
+                lapNumber: lapNumber,
                 time: time,
             }
         );

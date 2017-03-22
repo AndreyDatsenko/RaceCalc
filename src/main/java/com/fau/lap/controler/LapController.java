@@ -23,21 +23,8 @@ public class LapController {
 
     @PostMapping("/qualification/time")
     @ResponseBody
-    public void create(@RequestParam Integer driverId,
-                       @RequestParam String time) {
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm:ss.SS");
-        Lap lap = new Lap();
-        lap.setNumber(0);
-        lap.setTime(LocalTime.parse(time, format));
+    public void create(@RequestParam Integer driverId,Lap lap) {
         lapService.saveQualificationLap(lap, driverId);
 
     }
-
-
-    @RequestMapping("/result")
-    public Lap result(Driver driver) {
-        return lapService.result(driver);
-    }
-
-
 }

@@ -5,18 +5,18 @@ import java.time.LocalTime;
 
 public class Lap {
 
-    private int number;
+    private int lapNumber;
     private boolean chipBoard;
     private boolean chipFront;
     private boolean falseStart;
     private LocalTime time;
 
-    public int getNumber() {
-        return number;
+    public int getLapNumber() {
+        return lapNumber;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public void setLapNumber(int lapNumber) {
+        this.lapNumber = lapNumber;
     }
 
     public boolean isChipBoard() {

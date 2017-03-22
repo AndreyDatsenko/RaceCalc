@@ -10,6 +10,7 @@
     <h3>
         <span th:text="${date}" th:remove="tag"></span>
         <span th:text="${raceName}" th:remove="tag"></span>
+        <input type="hidden" name="competition_id" th:value="${competitionId}"/>
     </h3>
     <h2>КВАЛІФІКАЦІЯ</h2>
     <h3>Результат заїзду</h3>
@@ -20,10 +21,10 @@
         <td th:text="${driver.carCategory}"/>
         <td th:text="${driver.name}"/>
         <td th:text="${driver.surname}"/>
-        <td th:text="${driver.number}"/>
+        <td th:text="${driver.lapNumber}"/>
         <td th:text="${driver.carMark}"/>
         <span th:each="lap : ${driver.laps}">
-        <td th:if="${lap.number eq 0}" th:text="${lap.time}"/>
+        <td th:if="${lap.lapNumber eq 0}" th:text="${lap.time}"/>
         </span>
     </tr>
 </table>
