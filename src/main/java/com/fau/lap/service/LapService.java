@@ -2,9 +2,10 @@ package com.fau.lap.service;
 
 import com.fau.lap.domain.Lap;
 import com.fau.lap.repository.LapRepository;
-import com.fau.driver.domein.Driver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class LapService {
@@ -20,4 +21,7 @@ public class LapService {
         lapRepository.saveQualificationLap(lap, driverId);
     }
 
+    public List<Lap> getLapsByDriverId(int driverId){
+        return lapRepository.getLapsByDriverId(driverId);
+    }
 }

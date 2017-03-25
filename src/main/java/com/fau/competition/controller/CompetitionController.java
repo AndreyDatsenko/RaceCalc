@@ -4,7 +4,7 @@ import com.fau.competition.domein.Competition;
 import com.fau.competition.service.CompetitionService;
 import com.fau.driver.domein.Driver;
 import com.fau.driver.service.DriverService;
-import com.sun.media.sound.ModelDestination;
+import com.fau.lap.service.LapService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,11 +18,13 @@ public class CompetitionController {
 
     private CompetitionService competitionService;
     private DriverService driverService;
+    private LapService lapService;
 
     @Autowired
-    public CompetitionController(CompetitionService competitionService, DriverService driverService) {
+    public CompetitionController(CompetitionService competitionService, DriverService driverService, LapService lapService) {
         this.competitionService = competitionService;
         this.driverService = driverService;
+        this.lapService = lapService;
     }
 
     @GetMapping("/new")
@@ -44,7 +46,12 @@ public class CompetitionController {
 
     @GetMapping("/{competitionId}/qualification/result")
     public String qualificationResult(Model model, @PathVariable int competitionId) {
-        model.addAttribute("drivers", competitionService.getResultQualificationList(competitionId));
+        List<Driver> drivers = driverService.getResultDriverList(competitionId);
+        for (Driver driver : drivers) {
+            driver.setLaps(lapService.getLapsByDriverId(driver.getId()));
+        }
+        model.addAttribute("drivers", drivers);
+        model.addAttribute("competitionId", competitionId);
         return "qualificationResult";
     }
 
@@ -52,6 +59,13 @@ public class CompetitionController {
     public String closeCompetition() {
         competitionService.closeCompetition();
         return "index";
+    }
+
+    @GetMapping("/{competitionId}/general")
+    public String generalCompetition(@PathVariable int competitionId, Model model) {
+        model.addAttribute("drivers", driverService.getResultDriverList(competitionId));
+        model.addAttribute("competitionId", competitionId);
+        return "generalCompetition";
     }
 
     @GetMapping("/{competitionId}/qualification")

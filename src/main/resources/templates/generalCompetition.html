@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <title>Title</title>
+    <link href="/css/panel.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/linkStyle.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/generalCompetitionTable.css" rel="stylesheet" type="text/css"/>
+
+    <script src="/lib/jquery-3.1.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#flip").click(function () {
+                $("#panel").slideToggle("slow");
+            });
+        });
+    </script>
+</head>
+<body>
+<div align="center" th:background="grey">
+    <h3>
+        <span th:text="${date}" th:remove="tag"></span>
+        <span th:text="${raceName}" th:remove="tag"></span>
+        <input type="hidden" name="competition_id" th:value="${competitionId}"/>
+    </h3>
+    <h2>ГОЛОВНЕ ЗМАГАННЯ</h2>
+</div>
+<p></p>
+<div id="flip">Додати участників до заїзду</div>
+<div id="panel">
+    <table width="60%" align="center">
+        <tr th:each="driver, iter : ${drivers}">
+            <td th:text="${iter.count}">1</td>
+            <td th:text="${driver.name}"/>
+            <td th:text="${driver.surname}"/>
+            <td width="15%"><a href="#">додати</a></td>
+            <td><input type="hidden" name="id" th:value="${driver.id}"/></td>
+        </tr>
+    </table>
+</div>
+
+<table class="table">
+    <tr>
+        <td width="10">Класс</td>
+        <td width="9%">Фамілія водія</td>
+        <td width="9%">Ім'я водія</td>
+        <td width="2%">Номер</td>
+        <td width="10%">Фвтомобіль</td>
+        <th width="20%" colspan="4">1-й заїзд</th>
+        <th width="20%" colspan="4">2-й заїзд</th>
+        <th width="20%" colspan="4">3-й заїзд</th>
+    </tr>
+
+</table>
+</body>
+</html>

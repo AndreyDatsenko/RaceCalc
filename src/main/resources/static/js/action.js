@@ -46,13 +46,10 @@ $(document).on('click','.save_time',function() {
     if (!/([0-9]+):([0-5][0-9]):([0-5][0-9]).([0-5][0-9])/.test(time)) {
         alert("Не правильне значення для часу!");
         $(this).css("backgroundColor", "red");
-
     } else {
         $(this).hide();
-
         $.post("/lap/qualification/time",
             {
-
                 driverId: driverId,
                 lapNumber: lapNumber,
                 time: time,

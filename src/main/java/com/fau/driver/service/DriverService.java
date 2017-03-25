@@ -29,6 +29,10 @@ public class DriverService {
         driverRepository.deleteDriver(driverId);
     }
 
+    public List<Driver> getResultDriverList(int competitionId) {
+        return driverRepository.getResultDriverList(competitionId);
+    }
+
     public void updateDriver(Driver driver) {
         driverRepository.updateDriver(driver);
     }

@@ -1,15 +1,13 @@
 package com.fau.driver.repository;
 
+import com.fau.driver.rowmapper.DriverRowMapper;
 import com.fau.driver.domein.Driver;
-import com.fau.lap.domain.Lap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,17 +52,7 @@ public class DriverRepository {
                 "JOIN competition_driver cd ON d.id = cd.driver_id\n" +
                 "AND cd.competition_id=?";
 
-        return jdbcTemplate.query(sql, param, (rs, rowNum) -> {
-            Driver driver = new Driver();
-            driver.setId(rs.getInt(1));
-            driver.setName(rs.getString(2));
-            driver.setSurname(rs.getString(3));
-            driver.setNumber(rs.getInt(4));
-            driver.setCarCategory(rs.getString(5));
-            driver.setCarMark(rs.getString(6));
-
-            return driver;
-        });
+        return jdbcTemplate.query(sql, param, new DriverRowMapper());
     }
 
     public void deleteDriver(int driverId) {
@@ -82,5 +70,20 @@ public class DriverRepository {
         jdbcTemplate.update(sql, params);
     }
 
+    public List<Driver> getResultDriverList(int competitionId) {
+        Object[] param = new Object[]{competitionId};
+        String sql = "SELECT * FROM driver d\n" +
+                "JOIN competition_driver cd ON d.id = cd.driver_id\n" +
+                "JOIN lap lp ON lp.driver_id = d.id AND cd.competition_id=?\n" +
+                "ORDER BY lp.time";
 
+        return jdbcTemplate.query(sql, param, new DriverRowMapper());
+    }
+
+    public Driver getDriverById(int driverId) {
+        Object[] param = new Object[]{driverId};
+        String sql = "SELECT * FROM driver WHERE id = ?";
+
+        return jdbcTemplate.queryForObject(sql, param, new DriverRowMapper());
+    }
 }

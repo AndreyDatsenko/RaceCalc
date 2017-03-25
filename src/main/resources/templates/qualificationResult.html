@@ -21,14 +21,14 @@
         <td th:text="${driver.carCategory}"/>
         <td th:text="${driver.name}"/>
         <td th:text="${driver.surname}"/>
-        <td th:text="${driver.lapNumber}"/>
+        <td th:text="${driver.number}"/>
         <td th:text="${driver.carMark}"/>
-        <span th:each="lap : ${driver.laps}">
+        <th:block th:each="lap : ${driver.laps}">
         <td th:if="${lap.lapNumber eq 0}" th:text="${lap.time}"/>
-        </span>
+        </th:block>
     </tr>
 </table>
-<form action="/competition/general/race">
+<form th:action="@{|/competition/${competitionId}/general|}">
     <input type="submit" value="Перейти до гонки"/>
 </form>
 </body>
