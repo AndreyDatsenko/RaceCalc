@@ -3,13 +3,13 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-
     <title>Title</title>
+    <script src="/lib/jquery-3.1.1.js"></script>
+    <script src="/js/generalCompetition.js"></script>
     <link href="/css/panel.css" rel="stylesheet" type="text/css"/>
     <link href="/css/linkStyle.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/inputWithoutBorder.css" rel="stylesheet" type="text/css"/>
     <link href="/css/generalCompetitionTable.css" rel="stylesheet" type="text/css"/>
-
-    <script src="/lib/jquery-3.1.1.js"></script>
     <script>
         $(document).ready(function () {
             $("#flip").click(function () {
@@ -32,26 +32,26 @@
 <div id="panel">
     <table width="60%" align="center">
         <tr th:each="driver, iter : ${drivers}">
-            <td th:text="${iter.count}">1</td>
-            <td th:text="${driver.name}"/>
-            <td th:text="${driver.surname}"/>
-            <td width="15%"><a href="#">додати</a></td>
-            <td><input type="hidden" name="id" th:value="${driver.id}"/></td>
+            <th th:text="${iter.count}">1</th>
+            <th th:text="${driver.name}"/>
+            <th th:text="${driver.surname}"/>
+            <th width="15%"><a href="#" class="get_driver" onclick="deleteRow(this);">додати</a></th>
+            <th><input type="hidden" name="id" th:value="${driver.id}"/></th>
         </tr>
     </table>
 </div>
 
 <table class="table">
     <tr>
-        <td width="10">Класс</td>
-        <td width="9%">Фамілія водія</td>
-        <td width="9%">Ім'я водія</td>
-        <td width="2%">Номер</td>
-        <td width="10%">Фвтомобіль</td>
-        <th width="20%" colspan="4">1-й заїзд</th>
-        <th width="20%" colspan="4">2-й заїзд</th>
-        <th width="20%" colspan="4">3-й заїзд</th>
+        <td width="15">Класс</td>
+        <td width="15%">Фамілія водія</td>
+        <td width="10%">Ім'я водія</td>
+        <td width="5%">Номер</td>
+        <td width="10%">Автомобіль</td>
+        <th width="25%" colspan="4">заїзд</th>
+        <th width="20%"></th>
     </tr>
+    <tbody id="general_table"></tbody>
 
 </table>
 </body>

@@ -20,8 +20,8 @@ public class LapRepository {
     }
 
     public void saveQualificationLap(Lap lap, int driverID) {
-        Object[] params = new Object[]{driverID, lap.getLapNumber(), lap.getTime().toNanoOfDay()};
-        String sql = "INSERT INTO lap(driver_id, lap_number, time) VALUES(?, ?, ?)";
+        Object[] params = new Object[]{driverID, lap.getLapNumber(), lap.getTime().toNanoOfDay(), lap.isChipBoard(), lap.isChipFront(), lap.isFalseStart()};
+        String sql = "INSERT INTO lap(driver_id, lap_number, time, chip_board, chip_front, false_start) VALUES(?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(sql, params);
     }
     

@@ -1,0 +1,37 @@
+a:link, a:visited{
+    alingn: center;
+    border: 0;
+    color: #353534;
+    padding: 20px 40px;
+    width: 25%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.37), rgba(248, 161, 12, 0.91));
+    border-radius: 20px/60px;
+}
+
+a:hover {
+    background: #ffcd6d;
+    color: #ff6700;
+    text-decoration: none;
+}
+
+div {
+    padding: 20px 10px;
+    background: #d8d9d5;
+    text-align: center;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    background: -webkit-gradient(linear, left top, left bottom,
+    color-stop(0%, white), color-stop(15%, white), color-stop(100%, rgba(255, 247, 2, 0.56)));
+    background: -moz-linear-gradient(top, white 0%, white 55%, rgba(255, 252, 0, 0.65) 130%);
+}
+
+body {
+    background: #d8d9d5;
+    color: #2c2c2c;
+    word-wrap: break-word;
+    text-align: center;
+}

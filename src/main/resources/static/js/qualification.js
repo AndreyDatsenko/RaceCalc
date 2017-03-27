@@ -29,8 +29,8 @@ function loadDrivers() {
             "<td><input form='" + this.id + "' class='input' type='text' name='surname' value='" + this.surname + "'/></td>" +
             "<td><input form='" + this.id + "' class='input' type='text' name='number' value='" + this.number + "'/></td>" +
             "<td><input form='" + this.id + "' class='input' type='text' name='mark' value='" + this.carMark + "'/></td>" +
-            "<td><a href='#' class='edit'>редагувати</a><input type='hidden' name='id' value='" + this.id + "'/></td>" +
-            "<td><a class='delete' onClick='deleteRow(this);' href='#'>видалити</a></td></tr>");
+            "<th><a href='#' class='edit'>редагувати</a><input type='hidden' name='id' value='" + this.id + "'/></th>" +
+            "<th><a class='delete' onClick='deleteRow(this);' href='#'>видалити</a></th></tr>");
         });
         $("#driver").html(content)
     });
@@ -40,7 +40,7 @@ function saveDriver() {
     var surname = $("input[name=surname]").val();
     var name = $("input[name=name]").val();
     var number = $("input[name=number]").val();
-    var carCategory = $("input[name=category]").val();
+    var carCategory = $( "#select option:selected" ).text();
     var carMark = $("input[name=mark]").val();
     var competitionId = $("input[name=competition_id]").val();
 
@@ -68,7 +68,7 @@ function replaceTable() {
             "<th width='15%'>Автомобіль</th>" +
             "<th width='10%'>1-й заїзд</th>" +
             "<th width='10%'>2-й заїзд</th>" +
-            "<td width='15'></td><tr>";
+            "<th width='15'></th><tr>";
 
         $.each(data, function () {
             tableContent += ( "<tr><td>" + this.carCategory + "</td>" +

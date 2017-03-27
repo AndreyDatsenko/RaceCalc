@@ -33,15 +33,18 @@
 <div id="panel">
 
     <form id="form">
-        Категорія <input type="text" size="12" name="category"/>
+        Категорія <select id="select">
+        <option value="CТАНДАРТ">CТАНДАРТ</option>
+        <option value="СПОРТ ПЕРЕДНІЙ">СПОРТ ПЕРЕДНІЙ</option>
+        <option value="СПОРТ ЗАДНІЙ">СПОРТ ЗАДНІЙ</option>
+    </select>
+        Автомобіль <input type="text" size="8" name="mark"/>
         Им'я водія <input type="text" size="8" name="name"/>
         Прізвище водія <input type="text" size="8" name="surname"/>
-        Номер <input type="text" name="lapNumber" size="2"/>
-        Автомобіль <input type="text" size="8" name="mark"/>
+        Номер <input type="text" name="number" size="2"/>
     </form>
     <p></p>
     <button id="add_driver">Додати до таблиці</button>
-
 </div>
 <table width="60%" id="drivers_table">
     <thead>
@@ -52,13 +55,11 @@
         <th width="10%">Номер</th>
         <th width="10%">Автомобіль</th>
         <th width="40%" colspan="2"></th>
-
     </tr>
     </thead>
     <tbody id="driver"></tbody>
 </table>
 <p></p>
-
 <button id="list_drivers">Розпочати кваліфікаційний заїзд"</button>
 </body>
 </html>

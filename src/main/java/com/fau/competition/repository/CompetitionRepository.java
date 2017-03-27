@@ -1,6 +1,7 @@
 package com.fau.competition.repository;
 
 import com.fau.competition.domein.Competition;
+import com.fau.competition.rowmapper.CompetitionRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.sql.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Repository
@@ -42,5 +44,10 @@ public class CompetitionRepository {
 
     public void closeCompetition() {
         jdbcTemplate.update("UPDATE Competition SET is_active=FALSE WHERE is_active = TRUE");
+    }
+
+    public List<Competition> getActivCompetition() {
+        String sql = "SELECT * FROM competition WHERE is_active = TRUE";
+        return jdbcTemplate.query(sql, new CompetitionRowMapper());
     }
 }

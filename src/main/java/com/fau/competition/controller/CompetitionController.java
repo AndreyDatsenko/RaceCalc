@@ -34,6 +34,7 @@ public class CompetitionController {
 
     @PostMapping("/create")
     public String createCompetition(Competition competition) {
+        competition.setActive(true);
         int competitionId = competitionService.createCompetition(competition);
         return "redirect:/competition/" + competitionId + "/qualification";
     }

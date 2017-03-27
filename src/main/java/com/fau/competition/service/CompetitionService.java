@@ -5,6 +5,8 @@ import com.fau.competition.repository.CompetitionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CompetitionService {
 
@@ -21,5 +23,9 @@ public class CompetitionService {
 
     public void closeCompetition() {
         competitionRepository.closeCompetition();
+    }
+
+    public List<Competition> getActivCompetition() {
+        return competitionRepository.getActivCompetition();
     }
 }

@@ -1,13 +1,25 @@
 <!DOCTYPE HTML>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Title</title>
-    <link href="/css/index.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/start.css" rel="stylesheet" type="text/css"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
 </head>
 <body>
-<a href="/competition/2/qualification">Продовжити гонку</a>
-<a href="/competition/new">Створити нову гонку</a>
-<a href="/competition/archive">Продивитись архив</a>
+
+<th:block th:each="competition : ${competitions}">
+    <div >
+        <a th:attr="href='/competition/' + ${competition.id} + '/qualification'">Продовжити гонку <th:block th:text="${competition.competitionName}"></th:block></a>
+    </div>
+</th:block>
+<div>
+    <a href="/competition/new">Створити нову гонку</a>
+</div>
+<div>
+    <a href="/competition/archive">Продивитись архив</a>
+</div>
+
 </body>
 </html>

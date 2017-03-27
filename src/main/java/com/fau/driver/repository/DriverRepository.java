@@ -74,7 +74,7 @@ public class DriverRepository {
         Object[] param = new Object[]{competitionId};
         String sql = "SELECT * FROM driver d\n" +
                 "JOIN competition_driver cd ON d.id = cd.driver_id\n" +
-                "JOIN lap lp ON lp.driver_id = d.id AND cd.competition_id=?\n" +
+                "JOIN lap lp ON lp.driver_id = d.id AND cd.competition_id=? AND lp.lap_number=0\n" +
                 "ORDER BY lp.time";
 
         return jdbcTemplate.query(sql, param, new DriverRowMapper());

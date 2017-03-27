@@ -36,4 +36,8 @@ public class DriverService {
     public void updateDriver(Driver driver) {
         driverRepository.updateDriver(driver);
     }
+
+    public Driver getDriverById(int driverId) {
+        return driverRepository.getDriverById(driverId);
+    }
 }

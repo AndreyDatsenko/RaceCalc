@@ -17,9 +17,9 @@ public class LapController {
         this.lapService = lapService;
     }
 
-    @PostMapping("/qualification/time")
+    @PostMapping("/{driverId}/save/time")
     @ResponseBody
-    public void create(@RequestParam Integer driverId, Lap lap) {
+    public void create(@PathVariable int driverId, Lap lap) {
         lapService.saveQualificationLap(lap, driverId);
     }
 }

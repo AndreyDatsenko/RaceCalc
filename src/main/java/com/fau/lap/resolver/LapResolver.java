@@ -26,6 +26,9 @@ public class LapResolver implements HandlerMethodArgumentResolver {
 
         Lap lap = new Lap();
         lap.setLapNumber(Integer.parseInt(servletRequest.getParameter("lapNumber")));
+        lap.setChipBoard(Boolean.parseBoolean(servletRequest.getParameter("chipBoard")));
+        lap.setChipFront(Boolean.parseBoolean(servletRequest.getParameter("chipFront")));
+        lap.setFalseStart(Boolean.parseBoolean(servletRequest.getParameter("falseStart")));
         lap.setTime(LocalTime.parse(servletRequest.getParameter("time"), TIME_FORMAT));
 
         return lap;
