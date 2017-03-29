@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="/css/citySearch.css" rel="stylesheet" type="text/css"/>
+    <title>Результати пошуку</title>
+</head>
+<body>
+<h2 align="center">Результат пошуку:</h2>
+<table width="30%">
+    <tr th:each="competition : ${competitions}">
+        <th th:text="${competition.competitionCity}"/>
+        <th th:text="${competition.date}"/>
+        <th th:text="${competition.competitionName}"/>
+        <th><a th:attr="href='/competition/' + ${competition.id} + '/general/result'">деталі гонки</a></th>
+    </tr>
+</table>
+</body>
+</html>

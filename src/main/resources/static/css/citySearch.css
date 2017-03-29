@@ -1,0 +1,30 @@
+a {
+    background-color: #1fa100;
+    border: 0;
+    color: #ffffd4;
+    padding: 10px 20px;
+    text-decoration: none;
+}
+
+a:hover{
+    background: #e6ff07;
+    color: #feff98;
+    text-decoration: none;
+}
+
+table {
+
+ font-family: arial, sans-serif;
+ border-collapse: collapse;
+ width: 100%;
+}
+
+td, th {
+border: 1px solid #D3D3D3;
+text-align: left;
+padding: 10px;
+}
+
+tr:nth-child(even) {
+ background-color: #D3D3D3;
+}
