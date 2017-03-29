@@ -1,6 +1,6 @@
 package com.fau.competition.rowmapper;
 
-import com.fau.competition.domein.Competition;
+import com.fau.competition.domain.Competition;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

@@ -1,4 +1,4 @@
-package com.fau.driver.domein;
+package com.fau.driver.domain;
 
 import com.fau.lap.domain.Lap;
 

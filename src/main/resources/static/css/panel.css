@@ -1,4 +1,7 @@
 #panel, #flip, div {
+    border-radius: 7px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 7px;
     padding: 5px;
     text-align: center;
     background-color: #e6eadd;

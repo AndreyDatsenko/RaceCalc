@@ -1,6 +1,6 @@
 package com.fau.driver.service;
 
-import com.fau.driver.domein.Driver;
+import com.fau.driver.domain.Driver;
 import com.fau.driver.repository.DriverRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +30,7 @@ public class DriverService {
     }
 
     public List<Driver> getResultDriverList(int competitionId) {
-        return driverRepository.getResultDriverList(competitionId);
+        return driverRepository.getResultDriverList2(competitionId);
     }
 
     public void updateDriver(Driver driver) {

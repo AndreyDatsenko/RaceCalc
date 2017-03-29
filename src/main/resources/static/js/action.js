@@ -1,10 +1,10 @@
 $(document).on('click','.edit',function(){
     var row=$(this).closest("tr");
-    var category =$("td:eq(0)",row).find('input').val();
+    var carCategory =$("td:eq(0)",row).find('input').val();
     var name =$("td:eq(1)",row).find('input').val();
     var surname =$("td:eq(2)",row).find('input').val();
     var number =$("td:eq(3)",row).find('input').val();
-    var mark =$("td:eq(4)",row).find('input').val();
+    var carMark =$("td:eq(4)",row).find('input').val();
     var id =$("td:eq(5)",row).find('input').val();
 
     $.post("/driver/" + id + "/edit",
@@ -12,8 +12,8 @@ $(document).on('click','.edit',function(){
             name: name,
             surname: surname,
             number: number,
-            category: category,
-            mark: mark
+            carCategory: carCategory,
+            carMark: carMark
         }
     );
 });
@@ -43,8 +43,8 @@ $(document).on('click','.save_time',function() {
         time = time2;
     }
 
-    if (!/([0-9]+):([0-5][0-9]):([0-5][0-9]).([0-5][0-9])/.test(time)) {
-        alert("Не правильне значення для часу!");
+    if (!/([0-9]+):([0-5][0-9]):([0-5][0-9])[.]([0-5][0-9])/.test(time)) {
+        alert("Не правильний формат для часу!\n Правильний формат 00:00:00.00");
         $(this).css("backgroundColor", "red");
     } else {
         $(this).hide();

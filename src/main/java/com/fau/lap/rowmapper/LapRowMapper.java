@@ -12,6 +12,7 @@ public class LapRowMapper implements RowMapper<Lap> {
     public Lap mapRow(ResultSet rs, int rowNum) throws SQLException {
         Lap lap = new Lap();
         lap.setLapNumber(rs.getInt("lap_number"));
+        lap.setLapNumber(rs.getInt("lap_number"));
         lap.setChipBoard(rs.getBoolean("chip_board"));
         lap.setChipFront(rs.getBoolean("chip_front"));
         lap.setFalseStart(rs.getBoolean("false_start"));

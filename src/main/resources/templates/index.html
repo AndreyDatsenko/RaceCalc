@@ -4,21 +4,62 @@
 <head>
     <title>Title</title>
     <link href="/css/start.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/search.css" rel="stylesheet" type="text/css"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script src="/lib/jquery-3.1.1.js"></script>
+    <script src="/js/search.js"></script>
 
 </head>
 <body>
 
 <th:block th:each="competition : ${competitions}">
-    <div >
-        <a th:attr="href='/competition/' + ${competition.id} + '/qualification'">Продовжити гонку <th:block th:text="${competition.competitionName}"></th:block></a>
+    <div class="div" >
+        <a th:attr="href='/competition/' + ${competition.id} + '/qualification'">Продовжити гонку: "<th:block th:text="${competition.competitionName}"></th:block>"</a>
     </div>
 </th:block>
-<div>
+<div class="div">
     <a href="/competition/new">Створити нову гонку</a>
 </div>
-<div>
+<div class="div">
     <a href="/competition/archive">Продивитись архив</a>
+</div>
+
+<button id="search">Пошук</button>
+
+<div class="modal-shadow"></div>
+<div class="modal-window">
+    <div class="close">X</div>
+    <form action="/competition/search">
+        <input class="search" type="text" name="city" placeholder="Пошук по місту..."/>
+        <input class="button" type="submit" value="пошук"/>
+    </form>
+    <p> </p>
+    <form action="/driver/search">
+        <input class="search" type="text" name="search" placeholder="Пошук по фамілії..."/>
+        <input class="button" type="button" value="пошук"/>
+    </form>
+    <p> </p>
+    <form action="/driver/search">
+        <input class="search" type="text" name="search" placeholder="Пошук ..."/>
+        <input class="button" type="button" value="пошук"/>
+    </form>
+</div>
+
+<button id="rating">Рейтинги</button>
+<div class="modal-shadow2"></div>
+<div class="modal-window2">
+    <div class="close2">X</div>
+    <form action="/competition/search">
+        <input class="button" type="button" value="ТОР 5 у заїзді"/>
+    </form>
+    <p> </p>
+    <form action="/driver/search">
+        <input class="button" type="button" value="пошук"/>
+    </form>
+    <p> </p>
+    <form action="/driver/search">
+        <input class="button" type="button" value="пошук"/>
+    </form>
 </div>
 
 </body>

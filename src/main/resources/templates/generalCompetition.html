@@ -44,7 +44,7 @@
 <table class="table">
     <tr>
         <td width="15">Класс</td>
-        <td width="15%">Фамілія водія</td>
+        <td width="15%">Прізвище водія</td>
         <td width="10%">Ім'я водія</td>
         <td width="5%">Номер</td>
         <td width="10%">Автомобіль</td>
@@ -54,5 +54,9 @@
     <tbody id="general_table"></tbody>
 
 </table>
+
+<form th:action="@{|/competition/${competitionId}/general/result|}">
+    <input type="submit" value="Результати гонки"/>
+</form>
 </body>
 </html>

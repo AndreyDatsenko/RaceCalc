@@ -1,6 +1,6 @@
 package com.fau.competition.resolver;
 
-import com.fau.competition.domein.Competition;
+import com.fau.competition.domain.Competition;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;

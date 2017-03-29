@@ -1,7 +1,7 @@
 package com.fau.driver.repository;
 
 import com.fau.driver.rowmapper.DriverRowMapper;
-import com.fau.driver.domein.Driver;
+import com.fau.driver.domain.Driver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
@@ -48,7 +48,7 @@ public class DriverRepository {
 
     public List<Driver> driverList(int competitionId) {
         Object[] param = new Object[]{competitionId};
-        String sql = "SELECT * FROM driver d\n" +
+        String sql = "SELECT d.* FROM driver d\n" +
                 "JOIN competition_driver cd ON d.id = cd.driver_id\n" +
                 "AND cd.competition_id=?";
 
@@ -70,11 +70,21 @@ public class DriverRepository {
         jdbcTemplate.update(sql, params);
     }
 
-    public List<Driver> getResultDriverList(int competitionId) {
+    public List<Driver> getResultDriverList2(int competitionId) {
         Object[] param = new Object[]{competitionId};
-        String sql = "SELECT * FROM driver d\n" +
+        String sql = "SELECT d.* FROM driver d\n" +
                 "JOIN competition_driver cd ON d.id = cd.driver_id\n" +
                 "JOIN lap lp ON lp.driver_id = d.id AND cd.competition_id=? AND lp.lap_number=0\n" +
+                "ORDER BY lp.time";
+
+        return jdbcTemplate.query(sql, param, new DriverRowMapper());
+    }
+
+    public List<Driver> getResultDriverList(int competitionId) {
+        Object[] param = new Object[]{competitionId};
+        String sql = "SELECT d.* FROM driver d\n" +
+                "JOIN competition_driver cd ON d.id = cd.driver_id\n" +
+                "JOIN lap lp ON lp.driver_id = d.id AND cd.competition_id=? AND lp.lap_number!=0\n" +
                 "ORDER BY lp.time";
 
         return jdbcTemplate.query(sql, param, new DriverRowMapper());

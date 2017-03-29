@@ -1,6 +1,6 @@
 package com.fau.driver.controller;
 
-import com.fau.driver.domein.Driver;
+import com.fau.driver.domain.Driver;
 import com.fau.driver.service.DriverService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

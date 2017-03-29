@@ -1,7 +1,8 @@
 a:link, a:visited{
-    background-color: #F70;
+    background-color: #ffb601;
     color: #606060;
-    width: 100%;
+    width: 99%;
+    padding: 2px;
     text-align: center;
     text-decoration: none;
     display: inline-block;

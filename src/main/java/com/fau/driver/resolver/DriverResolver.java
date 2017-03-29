@@ -1,6 +1,6 @@
 package com.fau.driver.resolver;
 
-import com.fau.driver.domein.Driver;
+import com.fau.driver.domain.Driver;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;

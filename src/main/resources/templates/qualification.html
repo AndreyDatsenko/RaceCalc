@@ -6,6 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link href="/css/panel.css" rel="stylesheet" type="text/css"/>
     <link href="/css/linkStyle.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/qualificationFields.css" rel="stylesheet" type="text/css"/>
     <link href="/css/inputWithoutBorder.css" rel="stylesheet" type="text/css"/>
     <link href="/css/table.css" rel="stylesheet" type="text/css"/>
 
@@ -33,15 +34,15 @@
 <div id="panel">
 
     <form id="form">
-        Категорія <select id="select">
+        Категорія <select class="field" id="select">
         <option value="CТАНДАРТ">CТАНДАРТ</option>
         <option value="СПОРТ ПЕРЕДНІЙ">СПОРТ ПЕРЕДНІЙ</option>
         <option value="СПОРТ ЗАДНІЙ">СПОРТ ЗАДНІЙ</option>
     </select>
-        Автомобіль <input type="text" size="8" name="mark"/>
-        Им'я водія <input type="text" size="8" name="name"/>
-        Прізвище водія <input type="text" size="8" name="surname"/>
-        Номер <input type="text" name="number" size="2"/>
+        <input class="field" type="text" size="10" placeholder="Автомобіль" name="mark"/>
+        <input class="field" type="text" size="10" placeholder="Им'я водія " name="name"/>
+        <input class="field" type="text" size="10" placeholder="Прізвище водія" name="surname"/>
+        <input class="field" type="text" placeholder="Номер" name="number" size="2"/>
     </form>
     <p></p>
     <button id="add_driver">Додати до таблиці</button>

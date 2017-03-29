@@ -29,7 +29,7 @@ function loadDrivers() {
             "<td><input form='" + this.id + "' class='input' type='text' name='surname' value='" + this.surname + "'/></td>" +
             "<td><input form='" + this.id + "' class='input' type='text' name='number' value='" + this.number + "'/></td>" +
             "<td><input form='" + this.id + "' class='input' type='text' name='mark' value='" + this.carMark + "'/></td>" +
-            "<th><a href='#' class='edit'>редагувати</a><input type='hidden' name='id' value='" + this.id + "'/></th>" +
+            "<td><a href='#' class='edit'>редагувати</a><input type='hidden' name='id' value='" + this.id + "'/></td>" +
             "<th><a class='delete' onClick='deleteRow(this);' href='#'>видалити</a></th></tr>");
         });
         $("#driver").html(content)

@@ -1,6 +1,6 @@
 package com.fau.competition.repository;
 
-import com.fau.competition.domein.Competition;
+import com.fau.competition.domain.Competition;
 import com.fau.competition.rowmapper.CompetitionRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -46,8 +46,14 @@ public class CompetitionRepository {
         jdbcTemplate.update("UPDATE Competition SET is_active=FALSE WHERE is_active = TRUE");
     }
 
-    public List<Competition> getActivCompetition() {
+    public List<Competition> getActiveCompetition() {
         String sql = "SELECT * FROM competition WHERE is_active = TRUE";
         return jdbcTemplate.query(sql, new CompetitionRowMapper());
+    }
+
+    public List<Competition> searchByCity(String city){
+        Object[] param = new Object[]{city};
+        String sql = "SELECT * FROM competition WHERE city = ?";
+        return jdbcTemplate.query(sql, param, new CompetitionRowMapper());
     }
 }

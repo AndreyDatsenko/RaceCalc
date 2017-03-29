@@ -7,7 +7,7 @@ a:link, a:visited{
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.37), rgba(248, 161, 12, 0.91));
+    background-image: linear-gradient(rgb(78, 52, 0), rgba(255, 215, 0, 0.89));
     border-radius: 20px/60px;
 }
 
@@ -17,21 +17,21 @@ a:hover {
     text-decoration: none;
 }
 
-div {
+.div {
     padding: 20px 10px;
-    background: #d8d9d5;
+    background: #221f1e;
     text-align: center;
     -webkit-border-radius: 12px;
     -moz-border-radius: 7px;
     border-radius: 7px;
     background: -webkit-gradient(linear, left top, left bottom,
-    color-stop(0%, white), color-stop(15%, white), color-stop(100%, rgba(255, 247, 2, 0.56)));
-    background: -moz-linear-gradient(top, white 0%, white 55%, rgba(255, 252, 0, 0.65) 130%);
+    color-stop(0%, #000000), color-stop(15%, #3b3b3b), color-stop(100%, rgba(155, 161, 149, 0.56)));
+    background: -moz-linear-gradient(top, #000000 0%, white 55%, rgba(154, 152, 136, 0.65) 130%);
 }
 
 body {
-    background: #d8d9d5;
-    color: #2c2c2c;
+    background: #000000;
+    color: rgba(44, 44, 44, 0.73);
     word-wrap: break-word;
     text-align: center;
 }

@@ -31,8 +31,8 @@ $(document).on('click', '#first_lap', function () {
     var falseStart = $("td:eq(8)", row).find('input').is(":checked");
     var lapNumber = 1;
 
-    if (!/([0-9]+):([0-5][0-9]):([0-5][0-9]).([0-5][0-9])/.test(time)) {
-        alert("Не правильне значення для часу!");
+    if (!/([0-9]+):([0-5][0-9]):([0-5][0-9])[.]([0-5][0-9])/.test(time)) {
+        alert("Не правильний формат для часу!\n Правильний формат 00:00:00.00");
         $(this).css("backgroundColor", "red");
     } else {
         $.post("/lap/" + driverId + "/save/time",
@@ -70,8 +70,8 @@ $(document).on('click', '#second_lap', function () {
     var falseStart = $("td:eq(8)", row).find('input').is(":checked");
     var lapNumber = 2;
 
-    if (!/([0-9]+):([0-5][0-9]):([0-5][0-9]).([0-5][0-9])/.test(time)) {
-        alert("Не правильне значення для часу!");
+    if (!/([0-9]+):([0-5][0-9]):([0-5][0-9])[.]([0-5][0-9])/.test(time)) {
+        alert("Не правильний формат для часу!\n Правильний формат 00:00:00.00");
         $(this).css("backgroundColor", "red");
     } else {
         $.post("/lap/" + driverId + "/save/time",
@@ -110,8 +110,8 @@ $(document).on('click', '#third_lap', function () {
     var falseStart = $("td:eq(8)", row).find('input').is(":checked");
     var lapNumber = 3;
 
-    if (!/([0-9]+):([0-5][0-9]):([0-5][0-9]).([0-5][0-9])/.test(time)) {
-        alert("Не правильне значення для часу!");
+    if (!/([0-9]+):([0-5][0-9]):([0-5][0-9])[.]([0-5][0-9])/.test(time)) {
+        alert("Не правильний формат для часу!\n Правильний формат 00:00:00.00");
         $(this).css("backgroundColor", "red");
     } else {
         $(this).hide();

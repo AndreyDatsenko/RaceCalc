@@ -1,6 +1,6 @@
 package com.fau.driver.rowmapper;
 
-import com.fau.driver.domein.Driver;
+import com.fau.driver.domain.Driver;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

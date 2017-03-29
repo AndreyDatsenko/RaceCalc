@@ -1,4 +1,4 @@
-package com.fau.competition.domein;
+package com.fau.competition.domain;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
