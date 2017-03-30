@@ -46,7 +46,7 @@ public class CompetitionRepository {
         jdbcTemplate.update("UPDATE Competition SET is_active=FALSE WHERE is_active = TRUE");
     }
 
-    public List<Competition> getActiveCompetition() {
+    public List<Competition> getActiveCompetitions() {
         String sql = "SELECT * FROM competition WHERE is_active = TRUE";
         return jdbcTemplate.query(sql, new CompetitionRowMapper());
     }

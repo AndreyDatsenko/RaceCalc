@@ -70,7 +70,7 @@ public class DriverRepository {
         jdbcTemplate.update(sql, params);
     }
 
-    public List<Driver> getResultDriverList2(int competitionId) {
+    public List<Driver> getOrderedDriversByQualificationResult(int competitionId) {
         Object[] param = new Object[]{competitionId};
         String sql = "SELECT d.* FROM driver d\n" +
                 "JOIN competition_driver cd ON d.id = cd.driver_id\n" +

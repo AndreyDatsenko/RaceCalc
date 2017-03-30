@@ -20,7 +20,7 @@ public class IndexController {
 
     @GetMapping
     public String index(Model model){
-        model.addAttribute("competitions", competitionService.getActiveCompetition());
+        model.addAttribute("competitions", competitionService.getActiveCompetitions());
         return "index";
     }
 }

@@ -5,7 +5,9 @@ import com.fau.competition.domain.DriverResultItem;
 import com.fau.competition.repository.CompetitionRepository;
 import com.fau.driver.domain.Driver;
 import com.fau.driver.repository.DriverRepository;
+import com.fau.lap.domain.Lap;
 import com.fau.lap.service.LapService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,12 +17,13 @@ import java.util.stream.Collectors;
 public class CompetitionService {
 
     private final CompetitionRepository competitionRepository;
-    private final DriverRepository driverRepository;
+    private final DriverRepository driverService;
     private final LapService lapService;
 
-    public CompetitionService(CompetitionRepository competitionRepository, DriverRepository driverRepository, LapService lapService) {
+    @Autowired
+    public CompetitionService(CompetitionRepository competitionRepository, DriverRepository driverService, LapService lapService) {
         this.competitionRepository = competitionRepository;
-        this.driverRepository = driverRepository;
+        this.driverService = driverService;
         this.lapService = lapService;
     }
 
@@ -28,21 +31,32 @@ public class CompetitionService {
         return competitionRepository.createCompetition(competition);
     }
 
+    public List<Driver> getQualificationResult(int competitionId) {
+        List<Lap> laps = lapService.getLaps();
+        return driverService.getOrderedDriversByQualificationResult(competitionId).stream()
+                .map(driver -> {
+                    driver.setLaps(laps.stream()
+                            .filter(lap -> lap.getDriver_id() == driver.getId())
+                            .collect(Collectors.toList()));
+                    return driver;
+                })
+                .collect(Collectors.toList());
+    }
+
     public void closeCompetition() {
         competitionRepository.closeCompetition();
     }
 
-    public List<Competition> searchByCity(String city){
+    public List<Competition> searchByCity(String city) {
         return competitionRepository.searchByCity(city);
     }
 
-    public List<Competition> getActiveCompetition() {
-        return competitionRepository.getActiveCompetition();
+    public List<Competition> getActiveCompetitions() {
+        return competitionRepository.getActiveCompetitions();
     }
 
     public List<DriverResultItem> calculateResult(int competitionId) {
-        List<Driver> drivers = driverRepository.driverList(competitionId);
-        drivers.forEach(driver -> driver.setLaps(lapService.getLapsByDriverId(driver.getId())));
+        List<Driver> drivers = getQualificationResult(competitionId);
         return drivers.stream()
                 .map(driver -> {
                     DriverResultItem item = new DriverResultItem();

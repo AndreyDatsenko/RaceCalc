@@ -11,6 +11,7 @@ public class LapRowMapper implements RowMapper<Lap> {
     @Override
     public Lap mapRow(ResultSet rs, int rowNum) throws SQLException {
         Lap lap = new Lap();
+        lap.setDriver_id(rs.getInt("driver_id"));
         lap.setLapNumber(rs.getInt("lap_number"));
         lap.setLapNumber(rs.getInt("lap_number"));
         lap.setChipBoard(rs.getBoolean("chip_board"));

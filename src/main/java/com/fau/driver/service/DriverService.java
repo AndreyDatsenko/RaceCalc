@@ -29,8 +29,8 @@ public class DriverService {
         driverRepository.deleteDriver(driverId);
     }
 
-    public List<Driver> getResultDriverList(int competitionId) {
-        return driverRepository.getResultDriverList2(competitionId);
+    public List<Driver> getOrderedDriversByQualificationResult(int competitionId) {
+        return driverRepository.getOrderedDriversByQualificationResult(competitionId);
     }
 
     public void updateDriver(Driver driver) {
@@ -41,3 +41,4 @@ public class DriverService {
         return driverRepository.getDriverById(driverId);
     }
 }
+

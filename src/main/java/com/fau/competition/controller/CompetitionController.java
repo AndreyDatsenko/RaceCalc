@@ -4,7 +4,6 @@ import com.fau.competition.domain.Competition;
 import com.fau.competition.service.CompetitionService;
 import com.fau.driver.domain.Driver;
 import com.fau.driver.service.DriverService;
-import com.fau.lap.service.LapService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,12 +16,10 @@ public class CompetitionController {
 
     final private CompetitionService competitionService;
     final private DriverService driverService;
-    final private LapService lapService;
 
-    public CompetitionController(CompetitionService competitionService, DriverService driverService, LapService lapService) {
+    public CompetitionController(CompetitionService competitionService, DriverService driverService) {
         this.competitionService = competitionService;
         this.driverService = driverService;
-        this.lapService = lapService;
     }
 
     @GetMapping("/new")
@@ -45,11 +42,7 @@ public class CompetitionController {
 
     @GetMapping("/{competitionId}/qualification/result")
     public String qualificationResult(Model model, @PathVariable int competitionId) {
-        List<Driver> drivers = driverService.getResultDriverList(competitionId);
-        for (Driver driver : drivers) {
-            driver.setLaps(lapService.getLapsByDriverId(driver.getId()));
-        }
-        model.addAttribute("drivers", drivers);
+        model.addAttribute("drivers", competitionService.getQualificationResult(competitionId));
         model.addAttribute("competitionId", competitionId);
         return "qualificationResult";
     }
@@ -62,21 +55,21 @@ public class CompetitionController {
 
     @GetMapping("/{competitionId}/general")
     public String generalCompetition(@PathVariable int competitionId, Model model) {
-        model.addAttribute("drivers", driverService.getResultDriverList(competitionId));
+        model.addAttribute("drivers", driverService.getOrderedDriversByQualificationResult(competitionId));
         model.addAttribute("competitionId", competitionId);
         return "generalCompetition";
     }
 
     @GetMapping("/{competitionId}/general/result")
-    public String getGeneralResult(@PathVariable int competitionId, Model model){
+    public String getGeneralResult(@PathVariable int competitionId, Model model) {
         model.addAttribute("result", competitionService.calculateResult(competitionId));
         return "generalResult";
     }
 
     @GetMapping("/search")
-    public String searchByCity(@RequestParam("city") String city, Model model){
-      model.addAttribute("competitions", competitionService.searchByCity(city));
-      return "citySearch";
+    public String searchByCity(@RequestParam("city") String city, Model model) {
+        model.addAttribute("competitions", competitionService.searchByCity(city));
+        return "citySearch";
     }
 
     @PostMapping("/close")

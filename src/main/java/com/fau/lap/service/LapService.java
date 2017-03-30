@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class LapService {
 
-    private LapRepository lapRepository;
+    private final LapRepository lapRepository;
 
     @Autowired
     public LapService(LapRepository lapRepository) {
@@ -21,7 +21,7 @@ public class LapService {
         lapRepository.saveQualificationLap(lap, driverId);
     }
 
-    public List<Lap> getLapsByDriverId(int driverId){
-        return lapRepository.getLapsByDriverId(driverId);
+    public List<Lap> getLaps(){
+        return lapRepository.getLaps();
     }
 }

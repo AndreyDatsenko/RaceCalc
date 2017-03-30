@@ -25,11 +25,10 @@ public class LapRepository {
         jdbcTemplate.update(sql, params);
     }
     
-    public List<Lap> getLapsByDriverId(int driverId){
-        Object[] param = new Object[]{driverId};
-        String sql = "SELECT * FROM lap WHERE driver_id = ?";
+    public List<Lap> getLaps(){
+        String sql = "SELECT * FROM lap";
         
-        return jdbcTemplate.query(sql, param, new LapRowMapper());
+        return jdbcTemplate.query(sql, new LapRowMapper());
     }
 
 }
