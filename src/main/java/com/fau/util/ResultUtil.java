@@ -4,7 +4,7 @@ import java.util.List;
 
 public class ResultUtil {
 
-    public static long calculateResult(List<TimeSumator> timeArray) {
+    public static long calculateResult(List<TimeSummator> timeArray) {
         return (long) timeArray.stream()
                 .sorted()
                 .limit(2)

@@ -1,4 +1,4 @@
-package com.fau.lap.rowmapper;
+package com.fau.lap.repository.rowmapper;
 
 import com.fau.lap.domain.Lap;
 import org.springframework.jdbc.core.RowMapper;

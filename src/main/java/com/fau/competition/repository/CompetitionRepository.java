@@ -1,7 +1,7 @@
 package com.fau.competition.repository;
 
 import com.fau.competition.domain.Competition;
-import com.fau.competition.rowmapper.CompetitionRowMapper;
+import com.fau.competition.repository.rowmapper.CompetitionRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
@@ -16,8 +16,8 @@ import java.util.Map;
 @Repository
 public class CompetitionRepository {
 
-    private JdbcTemplate jdbcTemplate;
-    private SimpleJdbcInsert insertCompetition;
+    private final JdbcTemplate jdbcTemplate;
+    private final SimpleJdbcInsert insertCompetition;
 
     @Autowired
     public CompetitionRepository(DataSource dataSource) {
@@ -47,13 +47,13 @@ public class CompetitionRepository {
     }
 
     public List<Competition> getActiveCompetitions() {
-        String sql = "SELECT * FROM competition WHERE is_active = TRUE";
-        return jdbcTemplate.query(sql, new CompetitionRowMapper());
+        String listCompetition = "SELECT * FROM competition WHERE is_active = TRUE";
+        return jdbcTemplate.query(listCompetition, new CompetitionRowMapper());
     }
 
-    public List<Competition> searchByCity(String city){
+    public List<Competition> searchByCity(String city) {
         Object[] param = new Object[]{city};
-        String sql = "SELECT * FROM competition WHERE city = ?";
-        return jdbcTemplate.query(sql, param, new CompetitionRowMapper());
+        String citySearch = "SELECT * FROM competition WHERE city = ?";
+        return jdbcTemplate.query(citySearch, param, new CompetitionRowMapper());
     }
 }

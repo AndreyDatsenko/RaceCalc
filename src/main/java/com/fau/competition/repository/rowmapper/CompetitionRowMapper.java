@@ -1,4 +1,4 @@
-package com.fau.competition.rowmapper;
+package com.fau.competition.repository.rowmapper;
 
 import com.fau.competition.domain.Competition;
 import org.springframework.jdbc.core.RowMapper;

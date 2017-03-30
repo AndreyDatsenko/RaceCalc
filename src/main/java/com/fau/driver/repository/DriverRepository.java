@@ -1,6 +1,6 @@
 package com.fau.driver.repository;
 
-import com.fau.driver.rowmapper.DriverRowMapper;
+import com.fau.driver.repository.rowmapper.DriverRowMapper;
 import com.fau.driver.domain.Driver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -15,8 +15,8 @@ import java.util.Map;
 @Repository
 public class DriverRepository {
 
-    private JdbcTemplate jdbcTemplate;
-    private SimpleJdbcInsert insertDriver;
+    private final JdbcTemplate jdbcTemplate;
+    private final SimpleJdbcInsert insertDriver;
 
     @Autowired
     public DriverRepository(DataSource dataSource) {
@@ -41,18 +41,17 @@ public class DriverRepository {
 
     public void addDriverToCompetition(int competitionId, int driverId) {
         Object[] params = new Object[]{competitionId, driverId};
-        String sql = "INSERT INTO competition_driver (competition_id, driver_id) VALUES(?, ?)";
-
-        jdbcTemplate.update(sql, params);
+        String addDriverToCompetition = "INSERT INTO competition_driver (competition_id, driver_id) VALUES(?, ?)";
+        jdbcTemplate.update(addDriverToCompetition, params);
     }
 
-    public List<Driver> driverList(int competitionId) {
+    public List<Driver> getDriverList(int competitionId) {
         Object[] param = new Object[]{competitionId};
-        String sql = "SELECT d.* FROM driver d\n" +
+        String driverList = "SELECT d.* FROM driver d\n" +
                 "JOIN competition_driver cd ON d.id = cd.driver_id\n" +
                 "AND cd.competition_id=?";
 
-        return jdbcTemplate.query(sql, param, new DriverRowMapper());
+        return jdbcTemplate.query(driverList, param, new DriverRowMapper());
     }
 
     public void deleteDriver(int driverId) {
@@ -66,34 +65,24 @@ public class DriverRepository {
     public void updateDriver(Driver driver) {
         Object[] params = new Object[]{driver.getName(), driver.getSurname(), driver.getNumber(),
                 driver.getCarCategory(), driver.getCarMark(), driver.getId()};
-        String sql = "UPDATE driver SET name = ?, surname = ?, number = ?, car_category = ?, car_mark = ? WHERE id = ?";
-        jdbcTemplate.update(sql, params);
+        String updateDriver = "UPDATE driver SET name = ?, surname = ?, number = ?, car_category = ?, car_mark = ? WHERE id = ?";
+        jdbcTemplate.update(updateDriver, params);
     }
 
     public List<Driver> getOrderedDriversByQualificationResult(int competitionId) {
         Object[] param = new Object[]{competitionId};
-        String sql = "SELECT d.* FROM driver d\n" +
+        String orderDriversByResult = "SELECT d.* FROM driver d\n" +
                 "JOIN competition_driver cd ON d.id = cd.driver_id\n" +
                 "JOIN lap lp ON lp.driver_id = d.id AND cd.competition_id=? AND lp.lap_number=0\n" +
                 "ORDER BY lp.time";
 
-        return jdbcTemplate.query(sql, param, new DriverRowMapper());
-    }
-
-    public List<Driver> getResultDriverList(int competitionId) {
-        Object[] param = new Object[]{competitionId};
-        String sql = "SELECT d.* FROM driver d\n" +
-                "JOIN competition_driver cd ON d.id = cd.driver_id\n" +
-                "JOIN lap lp ON lp.driver_id = d.id AND cd.competition_id=? AND lp.lap_number!=0\n" +
-                "ORDER BY lp.time";
-
-        return jdbcTemplate.query(sql, param, new DriverRowMapper());
+        return jdbcTemplate.query(orderDriversByResult, param, new DriverRowMapper());
     }
 
     public Driver getDriverById(int driverId) {
         Object[] param = new Object[]{driverId};
-        String sql = "SELECT * FROM driver WHERE id = ?";
+        String getDriverById = "SELECT * FROM driver WHERE id = ?";
 
-        return jdbcTemplate.queryForObject(sql, param, new DriverRowMapper());
+        return jdbcTemplate.queryForObject(getDriverById, param, new DriverRowMapper());
     }
 }

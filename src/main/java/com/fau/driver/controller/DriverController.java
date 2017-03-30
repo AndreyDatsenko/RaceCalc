@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/driver")
 public class DriverController {
 
-    private DriverService driverService;
+    private final DriverService driverService;
 
     @Autowired
     public DriverController(DriverService driverService) {

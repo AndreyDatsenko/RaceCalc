@@ -14,8 +14,8 @@ import java.util.List;
 @RequestMapping("/competition")
 public class CompetitionController {
 
-    final private CompetitionService competitionService;
-    final private DriverService driverService;
+    private final CompetitionService competitionService;
+    private final DriverService driverService;
 
     public CompetitionController(CompetitionService competitionService, DriverService driverService) {
         this.competitionService = competitionService;
@@ -37,7 +37,7 @@ public class CompetitionController {
     @ResponseBody
     @GetMapping("/{competitionId}/drivers")
     public List<Driver> drivers(@PathVariable int competitionId) {
-        return driverService.driverList(competitionId);
+        return driverService.getDriverList(competitionId);
     }
 
     @GetMapping("/{competitionId}/qualification/result")

@@ -1,4 +1,4 @@
-package com.fau.driver.rowmapper;
+package com.fau.driver.repository.rowmapper;
 
 import com.fau.driver.domain.Driver;
 import org.springframework.jdbc.core.RowMapper;

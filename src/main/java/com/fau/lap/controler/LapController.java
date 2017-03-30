@@ -3,14 +3,13 @@ package com.fau.lap.controler;
 import com.fau.lap.domain.Lap;
 import com.fau.lap.service.LapService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequestMapping("/lap")
 public class LapController {
 
-    private LapService lapService;
+    private final LapService lapService;
 
     @Autowired
     public LapController(LapService lapService) {
@@ -18,7 +17,6 @@ public class LapController {
     }
 
     @PostMapping("/{driverId}/save/time")
-    @ResponseBody
     public void create(@PathVariable int driverId, Lap lap) {
         lapService.saveQualificationLap(lap, driverId);
     }

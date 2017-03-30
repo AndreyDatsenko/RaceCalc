@@ -21,8 +21,8 @@ public class DriverService {
         driverRepository.createDriver(competitionId, driver);
     }
 
-    public List<Driver> driverList(int competitionId) {
-        return driverRepository.driverList(competitionId);
+    public List<Driver> getDriverList(int competitionId) {
+        return driverRepository.getDriverList(competitionId);
     }
 
     public void deleteDriver(int driverId) {

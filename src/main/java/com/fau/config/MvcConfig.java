@@ -2,7 +2,6 @@ package com.fau.config;
 
 import com.fau.competition.resolver.CompetitionResolver;
 import com.fau.driver.resolver.DriverResolver;
-import com.fau.lap.domain.Lap;
 import com.fau.lap.resolver.LapResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
